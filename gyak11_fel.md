@@ -177,7 +177,12 @@ b. Nagy Ivo nyelvtudása legyen: 'angol' és 'francia'
 c. A szükséges parancsokat (2 db) adjuk meg válaszként!
 
 ```js
-
+token@cqlsh:kps2> alter table
+        ... Szemely add
+        ... nyelvtudas set<text>;
+token@cqlsh:kps2> update Szemely
+        ... set nyelvtudas=nyelvtudas+{'angol','francia'}
+        ... where nev='Nagy Ivó' and szulev=1999 and foglalkozas='diák';
 ```
 
 14. A Cassandra CQL Shell-ben adjon hozzá még egy új oszlopot a Szemely táblához!
@@ -189,7 +194,12 @@ b. Rögzítsük, hogy Kiss Bela esetén az Autok mező értéke: {'Skoda Fabia':
 c. A szükséges utasításokat (2 db) adjuk meg válaszként!
 
 ```js
-
+token@cqlsh:kps2> alter table
+        ... Szemely add
+        ... autok map<text, text>;
+token@cqlsh:kps2> update Szemely
+        ... set autok=autok+{'Skoda Fabia':'abc-111', 'Audi A4':'xyz-222'}
+        ... where nev='Kiss Béla' and szulev=2000 and foglalkozas='lakatos';
 ```
 
 15. A Cassandra CQL Shell-ben módosítsuk a Szemely tábla következő adatait:
@@ -202,7 +212,12 @@ c. A szükséges 2 utasítást adjuk meg válaszként!
 
 
 ```js
-
+token@cqlsh:kps2> update Szemely
+        ... set nyelvtudas=nyelvtudas+{'angol', 'francia', 'német'}
+        ... where nev='Nagy Ivó' and szulev=1999 and foglalkozas='diák';
+token@cqlsh:kps2> update Szemely
+        ... set vegzettseg=vegzettseg + ['bármixer']
+        ... where nev='Tóth Ottó' and szulev=1980 and foglalkozas='pincér';
 ```
 
 
