@@ -213,7 +213,7 @@ c. A szükséges 2 utasítást adjuk meg válaszként!
 
 ```js
 token@cqlsh:kps2> update Szemely
-        ... set nyelvtudas=nyelvtudas+{'angol', 'francia', 'német'}
+        ... set nyelvtudas=nyelvtudas+{'német'}
         ... where nev='Nagy Ivó' and szulev=1999 and foglalkozas='diák';
 token@cqlsh:kps2> update Szemely
         ... set vegzettseg=vegzettseg + ['bármixer']
