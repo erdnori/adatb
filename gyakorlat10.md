@@ -94,7 +94,7 @@ SCAN 0 MATCH *a* COUNT 200 //? KEYS helyett
 a. A szükséges utasítást adja meg válaszként!
 
 ```js
-
+ZREVRANGE szemelyek 0 -1
 ```
 
 10.\ A redis-cli-ben a korábban létrehozott szemelyek sorted set-ben növeljük Juli életkorát 10 évvel, majd ismét listázzuk a szemelyek sorted set elemeit!
@@ -102,7 +102,8 @@ a. A szükséges utasítást adja meg válaszként!
 a. A szükséges utasításokat (két utasítás) adjuk meg válaszként!
 
 ```js
-
+ZINCRBY szemelyek 10 Juli
+ZRANGE szemelyek 0 -1
 ```
 
 11.\ A redis-cli-ben hajtsuk végre a következő adatmódosításokat:
@@ -112,7 +113,8 @@ b. Töröljük az auto kulcsot
 c. A szükséges 2 utasítást adjuk meg válaszként!
 
 ```js
-
+RENAME numbers1 numbers01
+DEL auto
 ```
 
 12.\ Hozza létre mezőnként és soronként külön kulcsok segítségével a dolgozo tábla következő rekordjait:
@@ -124,7 +126,11 @@ Kiss Ilona   konyvelo                2
 a. A szükséges utasításokat tartalmazó képernyőrészt adja meg válaszként kép formájában!
 
 ```js
+HSET dolgozo:1 nev "Nagy Eva" munkakor "titkarno" kod 1
+HSET dolgozo:2 nev "Kiss Ilona" munkakor "konyvelo" kod 2
 
+--lekérdezés példa:
+EXISTS  dolgozo:1
 ```
 
 13.\ A redis-cli-ben hozzuk létre a projekt táblának megfelelő adatszerkezetet soronként és mezőnként külön kulcsokkal! A kulcsok megadásánál ügyeljünk a projekt és a dolgozo tábla közötti kapcsolatra!
@@ -136,7 +142,13 @@ projektkod    projektnev     dolgozokod
 a. A szükséges utasításokat adjuk meg válaszként kép formájában!
 
 ```js
+HSET projekt:1 projektkod 1 
+HSET projekt:1 projektnev "EURO-33"
+HSET projekt:1 dolgozokod 1
 
+HSET projekt:3 projektkod 3
+HSET projekt:3 projektnev "TRANS-22"
+HSET projekt:3 dolgozokod 2
 ```
 
 14.\ A redis-cli-ben hozzuk létre a dolgozo tábla (ld. 12-es feladat) nev oszlopának megfelelő adatszerkezetet dolgozo_nev néven!
@@ -144,7 +156,8 @@ a. A szükséges utasításokat adjuk meg válaszként kép formájában!
 a. A szükséges utasítást adja meg válaszként!
 
 ```js
-
+HSET dolgozo_nev 1 "Nagy Eva"
+HSET dolgozo_nev 2 "Kiss Ilona"
 ```
 
 15.\ A redis-cli-ben listázza a létező kulcsok számát a dbsize utasítás segítségével!
@@ -152,5 +165,5 @@ a. A szükséges utasítást adja meg válaszként!
 a. Az utasítást másolja be a válaszhoz!
 
 ```js
-
+DBSIZE
 ```
